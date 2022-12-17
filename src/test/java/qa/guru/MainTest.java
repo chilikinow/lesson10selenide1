@@ -1,26 +1,23 @@
 package qa.guru;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.*;
 
 public class MainTest {
 
     @BeforeAll
     static void beforeAll() {
-        //        Configuration.headless = true;
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
+        Configuration.headless = true;
+//        Configuration.browserSize = "1920x1080";
+//        Configuration.holdBrowserOpen = true;
     }
 
     @BeforeEach
@@ -42,7 +39,6 @@ public class MainTest {
     @DisplayName("Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5")
     void checkJUnit5ExampleOnSoftAssertionsWebPage() {
         $("#wiki-pages-box.wiki-pages-box").find(linkText("SoftAssertions")).click();
-        $(withText("Using JUnit5 extend test class"), 1).shouldBe(visible);
-
+        $x("//h4[text()='3. Using JUnit5 extend test class:']").shouldBe(visible);
     }
 }
